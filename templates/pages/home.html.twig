@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Agence Sample</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <h3 class="font-weight-light"> Agent récemment ajouté </h3>
+        <hr class="my-4">
+        <div class="row flex">
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">PRENOMS</th>
+                    <th scope="col">INFO</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for agent in agents %}
+                <tr class="{{ agent.gendersex == 1 ? 'table-primary' : 'table-danger' }}">
+                    <th scope="row">{{ agent.id }} </th>
+                    <td>{{ agent.firstname }}</td>
+                    <td>{{ agent.lastname }}</td>
+                    <td><a class="btn btn-secondary   btn-sm" href="{{ path('agent.show',{id: agent.id, slug: agent.slug }) }}" >[+] détail </a></td>
+                </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <hr class="my-4">
+    </div>
+
+{% endblock %}
